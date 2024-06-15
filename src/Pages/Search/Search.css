@@ -1,0 +1,28 @@
+#search-header{
+    font-size: var(--font-large);
+    margin-left: 1rem;
+    font-weight: 500;
+}
+
+#search-bar{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 0.4rem;
+    margin-top: 2rem;
+}
+
+#search-bar img{
+    width: 25px; 
+    margin: 0 0.5rem;
+}
+
+#search-input{
+    outline: none;
+    border: none;
+    padding: 0.4rem 0.1rem;
+    width: 100%;
+    font-size: var(--font-medium);
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+}

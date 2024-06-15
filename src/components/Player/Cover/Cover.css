@@ -1,0 +1,18 @@
+#cover{
+    display: flex;
+    place-content: center;
+}
+
+#cover-img-container{
+    margin-top: 3rem;
+    height: 60vw;
+    width: 60vw;
+    border-radius: 0.4rem;
+    background-color: var(--light-grey-color);
+}
+
+#cover-img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}

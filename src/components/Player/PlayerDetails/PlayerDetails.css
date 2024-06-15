@@ -1,0 +1,56 @@
+#song-details{
+    margin-top: 2rem;
+}
+
+#p-song-title{
+    font-size: var(--font-medium);
+    font-weight: 500;
+}
+
+#p-artist-name{
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+#progress-area{
+    position: relative;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+#progress-bar{
+    position: relative;
+    height: 3px;
+    border-radius: 2rem;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#progress{
+    position: relative;
+    display: block;
+    height: inherit;
+    border-radius: inherit;
+    background-color: white;
+    width: 20%;
+}
+
+#progress::before{
+    content: "";
+    position: absolute;
+    right: -3px;
+    top: -2px;
+    height: 7px;
+    width: 7px;
+    border-radius: 100%;
+    background-color:white;
+}
+
+#times{
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

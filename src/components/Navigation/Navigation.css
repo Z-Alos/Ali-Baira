@@ -1,0 +1,25 @@
+#navigation{
+    z-index: 100000;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 0.4rem;
+    background-color: var(--secondary-color);
+}
+
+.pages{
+    display: grid;
+    place-items: center;
+    font-size: var(--font-small);
+    cursor: pointer;
+}
+
+.page-label{
+    margin-top: 1px;
+    text-decoration: none;
+    pointer-events: none;
+    user-select: none;
+}

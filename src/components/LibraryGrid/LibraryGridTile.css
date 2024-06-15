@@ -1,0 +1,22 @@
+.library-grid-tile{
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    background-color: var(--secondary-color);
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.library-img{
+    height: inherit;
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+
+.library-name{
+    margin-left: 1rem;
+    width: 50%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

@@ -1,0 +1,25 @@
+.library-item{
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    margin-bottom: 1rem;
+}
+
+.library-img{
+    height: inherit;
+}
+
+.library-details{
+    margin-left: 1rem;
+}
+
+.lib-library-name{
+    font-size: var(--font-medium);
+}
+
+.library-type{
+    color: white;
+    opacity: 0.4;
+    font-weight: 300;
+    margin-top: -5px;
+}

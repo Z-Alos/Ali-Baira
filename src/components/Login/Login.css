@@ -1,0 +1,9 @@
+#sign-in-with-google-redirect{
+    padding: 0.5rem 1rem;
+    background-color: white;
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}

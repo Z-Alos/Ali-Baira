@@ -1,0 +1,20 @@
+#your-songs{
+    margin-top: 2rem;
+    font-size: var(--font-large);
+    font-weight: 500;
+}
+
+#songs-grid{
+    margin-top: 1rem;
+    margin-bottom: 10rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
+    gap: 1rem;
+}
+
+#songs-grid div::before{
+    content: "";
+    padding-bottom: 100%;
+    display: block;
+}

@@ -1,0 +1,17 @@
+#upload-section{
+    margin-top: 2rem;
+}
+
+.upload-details-titles{
+    margin-top: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+#music-name, #artist-name{
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    font-size: var(--font-medium);
+    outline: none;
+    border: none;
+    border-radius: 0.35rem;
+} 
