@@ -11,12 +11,11 @@ function Home() {
   return (
     <>
         <header id="topper">
-          <ProfileBtn/> 
-          <Login/>
+          {auth.currentUser !== null ? <ProfileBtn/> : <Login/>}
             <span id="site-logo">Nazmul</span>
         </header>
         <LibraryGrid/>
-        {(auth.currentUser != null)? <Songs/> : console.log("bulbasaur")}
+        {(auth.currentUser !== null)? <Songs/> : console.log("bulbasaur")}
     </>
   )
 }

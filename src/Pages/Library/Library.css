@@ -2,3 +2,14 @@
     margin-top: 2rem;
     margin-bottom: 5rem;
 }
+
+#looser{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#add-playlist{
+    height: 2rem;
+    width: 2rem;
+}

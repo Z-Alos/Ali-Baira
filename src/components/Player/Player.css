@@ -9,4 +9,17 @@
     max-width: 100%;
     z-index: 10000000;
     background-color: var(--primary-color);
+    cursor: default;
+}
+
+#player-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 14px;
+}
+
+.icons{
+    cursor: pointer;
 }

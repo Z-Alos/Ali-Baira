@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
@@ -15,8 +15,6 @@ const firebaseConfig = {
   
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
-
-export let isUser = false;
 
 export const db = getFirestore(app);
 
@@ -44,25 +42,8 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 
-auth.onAuthStateChanged((user) => { 
-  if (user) { 
 
-      // User is signed in 
-      isUser = true;
-      var uid = user.uid; 
-      console.log("isUser: ",isUser)
-      console.log("User Signed In: ", uid); 
-      console.log("curr: ",auth.currentUser)
-      // ... 
-      } else { 
-      // User is signed out 
-      console.log("User Signed Out"); 
-      isUser = false;
-      console.log("isUser: ",isUser)
-      // ... 
-  } 
-});
 
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
+export const signInWithGoogleRedirect = () => signInWithPopup(auth, provider);
 
 export default app;

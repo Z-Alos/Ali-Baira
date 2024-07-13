@@ -1,12 +1,30 @@
 .library-item{
     display: flex;
     align-items: center;
-    height: 4rem;
     margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+#lib-item-cover{
+    display: grid;
+    place-items: center;
+    position: relative;
+    height: 4rem;
+    width: 4rem;
+    background-color: var(--light-grey-color);
+}
+
+.lib-item-icon{
+    fill: white;
+    width: 70%;
 }
 
 .library-img{
     height: inherit;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .library-details{

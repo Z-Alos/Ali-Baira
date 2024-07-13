@@ -1,5 +1,37 @@
 .song-grid-item{
+    position: relative;
+    display: grid;
+    place-content: center;
     background-color: var(--light-grey-color);
     border-radius: 0.5rem;
+    height: 24vh;
+    cursor: pointer;
+}
+
+.sg-cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.sgi-details{
+    margin-top: 0.2rem;
+}
+
+.sgid-title, .sgid-artist{
+    font-size: 15px;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.sgid-artist{
+    font-size: var(--font-small);
+    opacity: 0.8;
 }
 

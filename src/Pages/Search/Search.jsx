@@ -1,6 +1,7 @@
 import React from 'react'
 import './Search.css'
 import ProfileBtn from '../../components/ProfileBtn/ProfileBtn'
+import SelectLibrary from '../../components/Player/SelectLibrary/SelectLibrary'
 
 function Search() {
   return (

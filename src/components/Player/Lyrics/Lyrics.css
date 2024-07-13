@@ -1,0 +1,15 @@
+#write-subs{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    background-color: var(--lyrics-bg);
+    height: 80vh;
+    border-radius: 1rem;
+    outline: none;
+    border: none;
+    resize: none;
+    color: white;
+    font-weight: bold;
+    font-size: var(--font-medium);
+    padding: 1rem;
+}

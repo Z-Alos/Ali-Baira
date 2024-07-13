@@ -1,0 +1,69 @@
+#options{
+    z-index: 1000000000;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem 0;
+    background-color: var(--authentic-grey-accent);
+}
+
+#option-song{
+    padding: 0 1rem;
+    border-bottom: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#close-options{
+    margin-top: -1rem;
+}
+
+.lv-details-mod{
+    margin-left: 0.5rem;
+}
+
+#lv-cover{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--light-grey-color);
+
+}
+
+#op-cover-img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+
+.lv-music-icon{
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    transform: translate(-135%,-135%);
+    fill: white;
+    width: 60%;
+}
+#option-list{
+    padding: 0 1rem;
+    margin-top: 1rem;
+}
+
+.option-list-item{
+    display: flex;
+    align-items: center;
+    margin-top: 1.25rem;
+    cursor: pointer;
+}
+
+.option-label{
+    margin-left: 1rem;
+}

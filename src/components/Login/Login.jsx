@@ -5,18 +5,6 @@ import { getRedirectResult, browserSessionPersistence, setPersistence, updateCur
 import { signInWithGoogleRedirect, auth, createUserDocumentFromAuth } from '../../firebase'
 
 function Login() {
-    if(auth.currentUser != null) return null;
-    useEffect(() => {
-        async function getRes(){
-            setPersistence(auth, browserSessionPersistence)
-            const response = await getRedirectResult(auth);
-        
-            if (response){
-                const userDocRef = await createUserDocumentFromAuth(response.user)
-            }
-        }
-        getRes()
-    }, [])
     
   return (
     <>

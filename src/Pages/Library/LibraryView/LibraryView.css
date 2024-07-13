@@ -1,0 +1,74 @@
+#lv-container{
+    height: 60vh;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -100;
+    background: linear-gradient(#1ed75f77, var(--primary-color));
+}
+
+#lib-view-top{
+
+    width: 100%;
+}
+
+#library-view-cover{
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+#library-view-cover-img{
+    width: 60%;
+    max-width: 250px;
+}
+
+#lv-details{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#lv-playlist-name{
+    font-size: var(--font-large);
+    font-weight: 600;
+}
+
+#lv-pic{
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: center;
+}
+
+#lv-profile{
+    display: flex;
+    align-items: center;
+}
+
+#lv-username{
+    margin-left: 0.5rem;
+    font-size: 15px;
+}
+
+#lv-play{
+    display: grid;
+    place-content: center;
+    object-fit: cover;
+    height: 3.25rem;
+    width: 3.25rem;
+    background-color: var(--authentic-green-accent);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#lv-play-btn{
+    width: 1.5rem;
+}
+
+#lv-list{
+    margin-top: 2rem;
+    padding-bottom: 6rem;
+}

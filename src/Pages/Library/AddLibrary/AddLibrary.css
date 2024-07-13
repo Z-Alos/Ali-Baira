@@ -1,0 +1,57 @@
+#add-library{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(white,black);
+    z-index: 100000000;
+}
+
+#give-name{
+    font-size: var(--font-medium);
+    font-weight: 600;
+}
+
+#enter-name{
+    margin-top: 2rem;
+    background: none;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-size: var(--font-large);
+    color: white;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+}
+
+#al-details{
+    display: grid;
+    align-items: center;
+    place-items: center;
+}
+
+#al-btn{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btn{
+    padding: 0.6rem 1.2rem;
+    border: 1px solid white;
+    border-radius: 50rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#create-btn{
+    border: none;
+    margin-left: 2rem;
+    background-color: var(--authentic-green-accent);
+    color: black;
+}

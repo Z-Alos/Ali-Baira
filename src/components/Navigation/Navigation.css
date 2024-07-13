@@ -6,14 +6,17 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    padding: 0.4rem;
+    padding: 0.7rem 0.5rem;
     background-color: var(--secondary-color);
+}
+
+#navigation img{
+    width: 1.5rem;
 }
 
 .pages{
     display: grid;
     place-items: center;
-    font-size: var(--font-small);
     cursor: pointer;
 }
 
@@ -22,4 +25,5 @@
     text-decoration: none;
     pointer-events: none;
     user-select: none;
+    font-size: 12px;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Lyrics.css'
 
-function Lyrics({ lyrics }) {
+function Lyrics() {
   return (
     <>
         <div id="upload-subs">
