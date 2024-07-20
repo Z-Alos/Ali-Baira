@@ -7,6 +7,7 @@ import pauseImg from '../../../assets/player/pause.png'
 import replayImg from '../../../assets/player/replay.png'
 import arrowHeadImg from '../../../assets/player/arrow-head.png'
 import lyricsImg from '../../../assets/player/lyrics.png'
+import { useNavigate } from 'react-router-dom';
 
 function Controls({autoPlay, index, list, onPrevious, onNext}) {
     const audioRef = useRef(null);
@@ -107,10 +108,10 @@ function Controls({autoPlay, index, list, onPrevious, onNext}) {
                 <img onClick={onNext} src={arrowHeadImg} className="icons" />
             </div>
             <img onClick={openModal} src={lyricsImg} className="icons" />
-            <Lyrics isOpen={isModalOpen} onClose={closeModal} details={list[index]}/>
 
         </div>
         </div>
+        <Lyrics isOpen={isModalOpen} onClose={closeModal} details={list[index]}/>
     </>
   )
 }

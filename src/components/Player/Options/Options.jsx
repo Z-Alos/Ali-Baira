@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Options.css'
 import SelectLibrary from '../SelectLibrary/SelectLibrary';
+import { useNavigate } from 'react-router-dom';
 
 import { doc, deleteDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db, auth, storage } from '../../../firebase';
@@ -9,6 +10,7 @@ import { ref, deleteObject } from "firebase/storage";
 import downImg from '../../../assets/player/down.png'
 import addImg from '../../../assets/player/add.png'
 import deleteImg from '../../../assets/delete.png'
+
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
@@ -16,6 +18,8 @@ function Options({ isOpen, onClose, details, index }) {
     if(!isOpen) return null;
     const [isLoaded, setIsLoaded] = useState(true)
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const navigate = useNavigate()
 
     let userRefID = "UserSampleData"
     if(auth.currentUser) {

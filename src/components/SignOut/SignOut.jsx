@@ -29,6 +29,17 @@ function SignOut({ isOpen, onClose }) {
     })
   })
 
+  const handleLogOutClose = () =>{
+    gsap.to('#log-out-menu',{
+      x: '-100%',
+      duration: 0.2,
+      onComplete: () =>{
+        gsap.to('#log-out-menu',{x: 0})
+        onClose()
+      }
+    })
+  }
+
   return (
     <>
         <div id="log-out-menu">
@@ -37,7 +48,7 @@ function SignOut({ isOpen, onClose }) {
             <img src={logOutBTN} id="log-out-btn-img" />
             <p id="log-out-btn-label">Log Out</p>
           </div>
-          <img onClick={onClose} id="log-out-menu-close-btn" src={closeImg} />
+          <img onClick={handleLogOutClose} id="log-out-menu-close-btn" src={closeImg} />
           </div>
         </div>
     </>

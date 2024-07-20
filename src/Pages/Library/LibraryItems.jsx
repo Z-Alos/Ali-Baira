@@ -55,7 +55,7 @@ function LibraryItems({ details }) {
           <img onClick={openModal} className='icons' src={dotsImg} alt=":" />
         </div>
       </div>
-      <DeletePlaylist isOpen={isModalOpen} onClose={closeModal} libraryID={details.libraryID} playlistName={details.playlistName} />
+      <DeletePlaylist isOpen={isModalOpen} onClose={closeModal} lvCover={details.lvCover} libraryID={details.libraryID} playlistName={details.playlistName} />
     </>
   );
 }

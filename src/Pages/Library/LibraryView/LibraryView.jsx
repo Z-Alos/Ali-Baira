@@ -10,7 +10,8 @@ import lvPlayImg from '../../../assets/lv-play.png';
 import lvPauseImg from '../../../assets/lv-pause.png';
 import downImg from '../../../assets/player/down.png';
 
-
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 function LibraryView({ isOpen, onClose }) {
   const navigate = useNavigate();
@@ -25,8 +26,6 @@ function LibraryView({ isOpen, onClose }) {
   const [songs, setSongs] = useState([]);
   const [profileSRC, setProfileSRC] = useState("https://lh3.googleusercontent.com/a/ACg8ocJeqn7ssxb7PwnLHJ-BZ2FRpZXWRejkMTCONHpKyvZu2QdxPZs=s288-c-no");
   const [userDisplayName, setUserDisplayName] = useState("Zalos");
-
-  // Only set userRefID in the effect, not in the render function
   const [userRefID, setUserRefID] = useState("UserSampleData");
 
   useEffect(() => {
@@ -92,7 +91,14 @@ function LibraryView({ isOpen, onClose }) {
   };
 
   const navigateToLibrary = () => {
-    navigate('/library');
+    gsap.to('#lv-wrapper',{
+      opacity: 0,
+      duration: 0.2,
+      onComplete: () => {
+        navigate('/library');
+        gsap.to('#lv-wrapper',{opacity: 1})
+      }
+    })
   };
 
   const handleBrokenImage = () => {
@@ -126,8 +132,16 @@ function LibraryView({ isOpen, onClose }) {
     setIsPlaying(!isPlaying);
   };
 
+  useGSAP(()=>{
+    gsap.from('#lv-wrapper',{
+      opacity: 0,
+      duration: 0.3
+    })
+  })
+
   return (
     <>
+    <div id="lv-wrapper">
       <div id="lv-container"></div>
       <img 
         onClick={navigateToLibrary} 
@@ -179,6 +193,7 @@ function LibraryView({ isOpen, onClose }) {
         ))}
       </div>
       <Player isOpen={isModalOpen} onClose={closeModal} index={0} list={songs} />
+      </div>
     </>
   );
 }

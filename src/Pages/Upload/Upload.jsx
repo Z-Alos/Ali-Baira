@@ -178,14 +178,13 @@ function Upload() {
         </header>
         <form ref={form} >
 
-
         <div id="upload-files-grid">
             <div onClick={()=> cover.current.click()} className='upload-area' id="upload-photo">
                 <span id="upload-photo-img">
                     <img className='images' src={imgImg}/>
                     <img ref={preview} id="cover-preview"/>
                     <input accept='image/*' ref={cover} onChange={(e) =>{preview.current.src= URL.createObjectURL(e.target.files[0]); preview.current.style.opacity = 1}} type="file" id="upload-photo-input"/>
-                    <p className="upload-area-titles">Upload Image</p>
+                    <p className="upload-area-titles">Image <span id="upload-cover-alert">*Optional</span> </p>
                 </span>
             </div>
             <div onClick={()=> audio.current.click()} className='upload-area' id="upload-audio">
@@ -198,7 +197,10 @@ function Upload() {
         </div> 
 
         <UploadDetails songName={setSong} artistName={setArtist}/>
-        <Lyrics lyrics={setLyrics}/>
+        <div id="write-lyrics-for-uploading">
+          <Lyrics lyrics={setLyrics}/>
+          <p id='upload-lyrics-alert' >*Uploading Lyrics Is Optional</p>
+          </div>
 
         <div id="upload-btn">
           <button disabled={isDisabled} onClick={uploadData} type='submit'>Publish</button>

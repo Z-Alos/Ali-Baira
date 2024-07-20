@@ -4,7 +4,7 @@
     padding: 1rem;
     left: 0;
     background-color: var(--primary-color);
-    width: 60vw;
+    width: 55vw;
     height: 100%;
     z-index: 10000000000000000;
     border-right: 2px dashed var(--authentic-green-accent);

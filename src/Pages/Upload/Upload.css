@@ -11,6 +11,27 @@
     cursor:pointer;
 }
 
+#upload-photo{
+    position: relative;
+}
+
+#write-lyrics-for-uploading{
+    position: relative;
+}
+
+#upload-lyrics-alert{
+    position: absolute;
+    top: 0.7rem;
+    left: 0.1rem;
+    font-size: var(--font-small);
+    color: crimson;
+}
+
+#upload-cover-alert{
+    color: crimson;
+    margin-left: 0.1rem;
+}
+
 /* Upload Files */
 
 #upload-files-grid{

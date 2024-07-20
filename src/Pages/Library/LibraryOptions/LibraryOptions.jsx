@@ -4,7 +4,7 @@ import { doc, deleteDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db, auth } from '../../../firebase'
 
 import downImg from '../../../assets/player/down.png'
-import addImg from '../../../assets/player/add.png'
+import removeImg from '../../../assets/player/remove.png'
 
 function LibraryOptions({ isOpen, onClose, details, index, libraryID }) {
     if(!isOpen) return null;
@@ -94,7 +94,7 @@ function LibraryOptions({ isOpen, onClose, details, index, libraryID }) {
             </div>
             <div id="option-list">
                 <div onClick={removeSongFromPlaylist} className='option-list-item' id="add-to-playlist">
-                    <img className='icons' src={addImg} alt="+" />
+                    <img className='icons' src={removeImg} alt="+" />
                     <p className="option-label">Remove From Playlist</p>
                 </div>
             </div>

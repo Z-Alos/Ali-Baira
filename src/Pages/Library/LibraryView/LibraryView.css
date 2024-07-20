@@ -79,6 +79,10 @@
     cursor: pointer;
 }
 
+#lv-play img{
+    margin-right: -0.2rem;
+}
+
 #lv-play-btn{
     width: 1.2rem;
 }

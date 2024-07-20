@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "zalosplay",
     "public": "dist",
     "ignore": [
       "firebase.json",
