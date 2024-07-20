@@ -6,6 +6,19 @@
   cursor: pointer;
 }
 
+.lv-flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: inherit;
+  width: 100%;
+}
+
+.lv-flex-inner{
+  display: flex;
+  align-items: center;
+  height: inherit;
+}
 
 .lv-img{
   height: inherit;

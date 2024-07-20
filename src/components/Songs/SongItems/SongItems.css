@@ -4,9 +4,11 @@
     place-content: center;
     background-color: var(--light-grey-color);
     border-radius: 0.5rem;
-    height: 24vh;
+    aspect-ratio: 1 / 1;
     cursor: pointer;
+    overflow: hidden;
 }
+
 
 .sg-cover{
     position: absolute;

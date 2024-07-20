@@ -1,14 +1,22 @@
 import React from 'react'
 import './Login.css'
-import { useEffect } from 'react'
-import { getRedirectResult, browserSessionPersistence, setPersistence, updateCurrentUser } from "firebase/auth";
 import { signInWithGoogleRedirect, auth, createUserDocumentFromAuth } from '../../firebase'
 
+import googleIMG from '../../assets/google.png'
+
 function Login() {
+
+  const handleSignIn = () =>{
+    console.log("how are you")
+    signInWithGoogleRedirect()
+  }
     
   return (
     <>
-        <button onClick={signInWithGoogleRedirect} id="sign-in-with-google-redirect">Log In</button>
+        <div onClick={handleSignIn} id="sign-in-with-google-redirect">
+          <img id="sign-in-btn-logo" src={googleIMG} />
+          <p id="sign-in-btn-label">Sign In</p>
+        </div>
     </>
   )
 }

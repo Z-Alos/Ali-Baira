@@ -3,6 +3,7 @@ import Navigation from './components/Navigation/Navigation'
 import Login from './components/Login/Login'
 import { auth } from './firebase'
 import { useState } from 'react'
+import Home from './Pages/Home/Home'
 
 function App() {
   const [user, setUser] = useState(false)
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <>
-    {(auth.currentUser !== null) ? <Navigation/> : <Login/>}
+    <Navigation />
     </>
   )
 }

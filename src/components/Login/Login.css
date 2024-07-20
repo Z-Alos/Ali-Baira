@@ -1,4 +1,7 @@
 #sign-in-with-google-redirect{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 0.5rem 1rem;
     background-color: white;
     outline: none;
@@ -6,4 +9,13 @@
     border-radius: 0.5rem;
     font-weight: bold;
     cursor: pointer;
+    color: black;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+#sign-in-btn-logo{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
 }

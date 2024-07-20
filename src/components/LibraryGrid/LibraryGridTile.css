@@ -1,7 +1,7 @@
 .library-grid-tile{
     display: flex;
     align-items: center;
-    height: 3rem;
+    height: 3.5rem;
     background-color: var(--secondary-color);
     border-radius: 0.3rem;
     cursor: pointer;
@@ -19,4 +19,12 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+
+
+
+#sp-2{
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
 }

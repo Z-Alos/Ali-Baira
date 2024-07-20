@@ -1,7 +1,15 @@
 import React, { useEffect } from 'react'
 import './Navigation.css'
-import { Link, Route, Routes, useLocation } from "react-router-dom"
+import { Link, Route, Routes, useLocation, Navigate } from "react-router-dom"
 import { useState } from 'react'
+
+import homeImg from '../../assets/navigation/home.png'
+import homeFilledImg from '../../assets/navigation/home-filled.png'
+import searchImg from '../../assets/navigation/search.png'
+import searchFilledImg from '../../assets/navigation/search-filled.png'
+import libraryImg from '../../assets/navigation/library.png'
+import libraryFilledImg from '../../assets/navigation/library-filled.png'
+import uploadImg from '../../assets/navigation/upload.png'
 
 import Home from '../../Pages/Home/Home';
 import Search from '../../Pages/Search/Search';
@@ -11,21 +19,21 @@ import Player from '../Player/Player'
 import LibraryView from '../../Pages/Library/LibraryView/LibraryView';
 
 function Navigation() {
-  const [homeSrc, setHomeSrc] = useState("src/assets/navigation/home.png");
-  const [searchSrc, setSearchSrc] = useState("src/assets/navigation/search.png");
-  const [librarySrc, setLibrarySrc] = useState("src/assets/navigation/library.png");
-  const [uploadSrc, setUploadSrc] = useState("src/assets/navigation/upload.png");
+  const [homeSrc, setHomeSrc] = useState(homeImg);
+  const [searchSrc, setSearchSrc] = useState(searchImg);
+  const [librarySrc, setLibrarySrc] = useState(libraryImg);
+  const [uploadSrc, setUploadSrc] = useState(uploadImg);
 
   const location = useLocation();
 
   const buttonState = () =>{
-    location.pathname == "/home" ? setHomeSrc("src/assets/navigation/home-filled.png") : setHomeSrc("src/assets/navigation/home.png") 
-    location.pathname == "/search" ? setSearchSrc("src/assets/navigation/search-filled.png") : setSearchSrc("src/assets/navigation/search.png") 
+    location.pathname == "/home" ? setHomeSrc(homeFilledImg) : setHomeSrc(homeImg) 
+    location.pathname == "/search" ? setSearchSrc(searchFilledImg) : setSearchSrc(searchImg) 
     //location.pathname == "/library" ? setLibrarySrc("src/assets/navigation/library-filled.png") : setLibrarySrc("src/assets/navigation/library.png") 
     if(location.pathname == "/library" || location.pathname == "/LibraryView"){
-      setLibrarySrc("src/assets/navigation/library-filled.png")
+      setLibrarySrc(libraryFilledImg)
     }else{
-      setLibrarySrc("src/assets/navigation/library.png")
+      setLibrarySrc(libraryImg)
     }
   }
 
@@ -68,6 +76,7 @@ function Navigation() {
         <Route path='/library' element={<Library/>}/>
         <Route path='/upload' element={<Upload/>}/>
         <Route path='/player' element={<Player/>}/>
+        <Route path='/*' element={<Navigate to="/home" />} />
         <Route path="/libraryView" element={<LibraryView />} />
       </Routes>
     </>

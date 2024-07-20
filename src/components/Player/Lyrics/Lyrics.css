@@ -1,15 +1,32 @@
-#write-subs{
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+#display-lyrics{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
     width: 100%;
-    background-color: var(--lyrics-bg);
-    height: 80vh;
-    border-radius: 1rem;
-    outline: none;
-    border: none;
-    resize: none;
+    z-index: 1000000000000;
+}
+
+#lyrics{
+    height: 100%;
+    width: 100%;
     color: white;
+    background-color: var(--lyrics-bg);
     font-weight: bold;
     font-size: var(--font-medium);
     padding: 1rem;
+    overflow: scroll;
+    padding-bottom: 5rem;
 }
+
+
+#lyrics-options{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 0.7rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background-color: var(--lyrics-bg);
+}
+

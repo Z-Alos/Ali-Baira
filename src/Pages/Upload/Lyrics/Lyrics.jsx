@@ -1,11 +1,14 @@
 import React from 'react'
 import './Lyrics.css'
 
-function Lyrics() {
+function Lyrics({ lyrics }) {
+  const handleLyrics = (e) => {
+    lyrics(e.target.value)
+  }
   return (
     <>
         <div id="upload-subs">
-            <textarea onChange={(e)=> lyrics(e.target.value)} id="write-subs">Write Lyrics...</textarea>
+            <textarea onChange={handleLyrics} id="write-subs">Write Lyrics...</textarea>
         </div>
     </>
   )

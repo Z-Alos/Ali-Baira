@@ -8,9 +8,10 @@ function Songs() {
   const [songs, setSongs] = useState();
   let index = 0;
   const temp = [];
-
+  let userRefID = "UserSampleData";
+  if (auth.currentUser) (userRefID = auth.currentUser.uid) 
   async function displaySongs(){
-    const colSnap = await getDocs(collection(db,'users',auth.currentUser.uid, 'songCollection'));
+    const colSnap = await getDocs(collection(db,'users',userRefID, 'songCollection'));
     console.log("retrieving....")
     try {
       if(colSnap){
@@ -34,9 +35,10 @@ function Songs() {
         console.log("error: ",error);
     }
   }
+
   useEffect(()=>{
     displaySongs();
-  },[])
+  },[userRefID])
 
 
   return (

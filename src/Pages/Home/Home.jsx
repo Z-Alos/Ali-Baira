@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 import {useState} from 'react'
 import ProfileBtn from '../../components/ProfileBtn/ProfileBtn'
@@ -7,15 +7,26 @@ import Login from '../../components/Login/Login'
 import Songs from '../../components/Songs/Songs'
 import { auth } from '../../firebase' 
 
+
 function Home() {
+  const [currentUser, setCurrentUser] = useState()
+  const [loading, setLoading] = useState(true)
+
+  useEffect(()=>{
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setCurrentUser(user)
+      setLoading(false)
+    })
+    return unsubscribe
+  },[])
   return (
     <>
         <header id="topper">
-          {auth.currentUser !== null ? <ProfileBtn/> : <Login/>}
-            <span id="site-logo">Nazmul</span>
+          {!loading ? (auth.currentUser !== null ? <ProfileBtn/> : <Login/>) : null}
+            <span id="site-logo">Satyam</span>
         </header>
-        <LibraryGrid/>
-        {(auth.currentUser !== null)? <Songs/> : console.log("bulbasaur")}
+        {!loading ? <LibraryGrid /> : null}
+        {!loading ? <Songs/> : null}
     </>
   )
 }

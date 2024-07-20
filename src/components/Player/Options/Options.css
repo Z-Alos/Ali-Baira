@@ -1,5 +1,5 @@
 #options{
-    z-index: 1000000000;
+    z-index: 100000000;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -60,7 +60,7 @@
 .option-list-item{
     display: flex;
     align-items: center;
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
     cursor: pointer;
 }
 

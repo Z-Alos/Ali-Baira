@@ -10,9 +10,15 @@
     z-index: 10000000;
     background-color: var(--primary-color);
     cursor: default;
+    overflow: hidden;
+}
+
+#dis-flex-orien{
+    display: flex;
 }
 
 #player-top{
+    margin-top: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;

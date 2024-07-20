@@ -19,9 +19,24 @@
     padding-top: 2rem;
 }
 
+#lv-cover-img-container{
+    position: relative;
+    display: grid;
+    place-content: center;
+    height: 60vw;
+    width: 60vw;
+    max-width: 17rem;
+    max-height: 17rem;
+    object-fit: cover;
+    background-color: var(--light-grey-color);
+}
+
 #library-view-cover-img{
-    width: 60%;
-    max-width: 250px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 #lv-details{
@@ -65,7 +80,13 @@
 }
 
 #lv-play-btn{
-    width: 1.5rem;
+    width: 1.2rem;
+}
+
+#lv-back-btn{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
 }
 
 #lv-list{

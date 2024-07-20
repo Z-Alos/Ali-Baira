@@ -1,11 +1,17 @@
 .library-item{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 1rem;
     cursor: pointer;
 }
 
-#lib-item-cover{
+.library-item-inner{
+    display: flex;
+    align-items: center;
+}
+
+.lib-item-cover{
     display: grid;
     place-items: center;
     position: relative;
@@ -23,6 +29,8 @@
     height: inherit;
     opacity: 0;
     position: absolute;
+    object-fit: cover;
+    width: 100%;
     top: 0;
     left: 0;
 }

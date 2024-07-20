@@ -1,16 +1,25 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './Upload.css'
 import ProfileBtn from '../../components/ProfileBtn/ProfileBtn'
 import Lyrics from './Lyrics/Lyrics'
 import UploadDetails from './UploadDetails/UploadDetails'
 
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import imgImg from '../../assets/image.png'
+
+import { collection, addDoc, doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db, auth, storage } from '../../firebase';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import ProgressModal from './ProgressModal/ProgressModal'
 
 function Upload() {
   const [songName, setSongName] = useState("")
+  const [isDisabled, setIsDisabled] = useState(true)
+
+  let userRefID = null; 
+  if(auth.currentUser) {
+    userRefID = auth.currentUser.uid
+  }
+
   function setSong(data){
     setSongName(data)
   }
@@ -46,7 +55,7 @@ function Upload() {
       setIsOpen(true); 
       console.log("setisopen")
 
-    if(auth.currentUser.uid){
+    if(userRefID){
       if(songName!=""){
         console.log(songName)
         if(artistName!=""){
@@ -58,7 +67,8 @@ function Upload() {
               songName:songName,
               artistName:artistName,
               songLyrics:songLyrics,
-              audioURL:"link"
+              audioURL:"link",
+              createdAt: serverTimestamp()
               }
               
               uploadSongDetails(fields);
@@ -72,7 +82,7 @@ function Upload() {
 
   function updateCoverURL(url, id){
     try {
-        const addHere = doc(db, `users/${auth.currentUser.uid}/songCollection/${id}`);
+        const addHere = doc(db, `users/${userRefID}/songCollection/${id}`);
         const docData = {
             coverURL:url
         }
@@ -85,7 +95,7 @@ function Upload() {
 
   function updateAudioURL(url, id){
       try {
-          const addHere = doc(db, `users/${auth.currentUser.uid}/songCollection/${id}`);
+          const addHere = doc(db, `users/${userRefID}/songCollection/${id}`);
           const docData = {
               audioURL:url
           }
@@ -93,6 +103,7 @@ function Upload() {
           console.log("updated the audio link...");
           setIsOpen(false)
           alert("Upload Completed");
+          window.location.reload();
       } catch(e){
           console.error("Error updating audio link: ",e);
       } 
@@ -101,7 +112,7 @@ function Upload() {
   async function uploadSongDetails(fields){
     try {
         setModalText("Uploading Song Details...")
-        const col = doc(db,"users",auth.currentUser.uid);
+        const col = doc(db,"users",userRefID);
         const collectionCol = collection(col,"songCollection")
         const songRef = await addDoc(collectionCol, fields)
         //setDoc(songDetails,docData,{merge:true});
@@ -125,7 +136,7 @@ function Upload() {
   }
 
   async function uploadCover(id){
-    const coverRef = ref(storage, `users/${auth.currentUser.uid}/coverPhoto/${id}`)
+    const coverRef = ref(storage, `users/${userRefID}/coverPhoto/${id}`)
     await uploadBytes(coverRef, cover.current.files[0]).then((snapshot) =>{
         console.log("Image Uploaded!!");
     });
@@ -140,7 +151,7 @@ function Upload() {
 
   async function uploadAudio(id){
 
-    const audioRef = ref(storage, `users/${auth.currentUser.uid}/audioFile/${id}`)
+    const audioRef = ref(storage, `users/${userRefID}/audioFile/${id}`)
     await uploadBytes(audioRef, audio.current.files[0]).then((snapshot) =>{
         console.log("Audio File Uploaded!!");
     });
@@ -153,6 +164,11 @@ function Upload() {
     })
 }
 
+  useEffect(()=>{
+    if(auth.currentUser){
+      setIsDisabled(false)
+    }
+  },[userRefID])
 
   return (
     <>
@@ -162,30 +178,30 @@ function Upload() {
         </header>
         <form ref={form} >
 
-        <UploadDetails songName={setSong} artistName={setArtist}/>
 
         <div id="upload-files-grid">
             <div onClick={()=> cover.current.click()} className='upload-area' id="upload-photo">
                 <span id="upload-photo-img">
-                    <img className='images' src="/src/assets/image.png"/>
+                    <img className='images' src={imgImg}/>
                     <img ref={preview} id="cover-preview"/>
-                    <input ref={cover} onChange={(e) =>{preview.current.src= URL.createObjectURL(e.target.files[0]); preview.current.style.opacity = 1}} type="file" id="upload-photo-input"/>
-                    <p className="upload-area-titles">Upload Image<span> *optional</span></p>
+                    <input accept='image/*' ref={cover} onChange={(e) =>{preview.current.src= URL.createObjectURL(e.target.files[0]); preview.current.style.opacity = 1}} type="file" id="upload-photo-input"/>
+                    <p className="upload-area-titles">Upload Image</p>
                 </span>
             </div>
             <div onClick={()=> audio.current.click()} className='upload-area' id="upload-audio">
             <span id="upload-photo-img">
                     <svg className='music-icon' data-encore-id="icon" role="img" aria-hidden="true" data-testid="track" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>                
-                    <input ref={audio} onChange={(e)=>setAudioFileTitle(e.target.files[0].name)} type="file" id="upload-audio-input" required/>
+                    <input accept='audio/*' ref={audio} onChange={(e)=>setAudioFileTitle(e.target.files[0].name)} type="file" id="upload-audio-input" required/>
                     <p className="upload-area-titles">{audioFileTitle}</p>
                 </span>
             </div>
         </div> 
 
+        <UploadDetails songName={setSong} artistName={setArtist}/>
         <Lyrics lyrics={setLyrics}/>
 
         <div id="upload-btn">
-          <button onClick={uploadData} type='submit'>Publish</button>
+          <button disabled={isDisabled} onClick={uploadData} type='submit'>Publish</button>
         </div>
         </form>
         <ProgressModal open={isOpen} text={modalText}/>

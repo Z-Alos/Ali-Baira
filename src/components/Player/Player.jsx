@@ -3,20 +3,51 @@ import './Player.css'
 import Cover from './Cover/Cover'
 import Controls from './Controls/Controls'
 import Options from './Options/Options';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+
+import downImg from "../../assets/player/down.png"
+import dotsImg from "../../assets/player/dots.png"
 
 function Player({isOpen, onClose, index, list}){
   if(!isOpen) return null;
   const [key, setKey] = useState(index);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useGSAP(()=>{
+    gsap.from('#player',{
+      opacity: 0,
+      duration: 0.3
+    })
+  }) 
+
   const openModal = () => {
       setIsModalOpen(true);
   };
 
   const closeModal = () => {
-      console.log("close modal")
-      setIsModalOpen(false);
+    console.log("close modal")
+    gsap.to('#options',{
+      y: '100%',
+      duration: 0.2,
+      onComplete: () =>{
+        gsap.to('#options',{y: 0}),
+        setIsModalOpen(false)
+      }
+    })
   };
+  
+  const handlePlayerClose = () =>{
+    gsap.to('#player',{
+      y: '100%',
+      duration: 0.3,
+      onComplete: () =>{
+        gsap.to('#player',{y: 0}),
+        onClose()
+      }
+    })
+
+  }
 
   const handlePrevious = () =>{
     if(key > 0){
@@ -43,9 +74,9 @@ function Player({isOpen, onClose, index, list}){
         <div id="player">
         <>
           <div id="player-top">
-            <img onClick={onClose}  className='icons' src="src/assets/player/down.png" alt="<" id="close-player" />
+            <img onClick={handlePlayerClose}  className='icons' src={downImg} alt="<" id="close-player" />
             <p id="now-playing">Now Playing</p>
-            <img onClick={handleOptions} className='icons' src="src/assets/player/dots.png" alt=":" id="player-extra-options" />
+            <img onClick={handleOptions} className='icons' src={dotsImg} alt=":" id="player-extra-options" />
           </div>
         </>
             <Cover index={key} list={list} />

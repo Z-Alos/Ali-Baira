@@ -1,3 +1,15 @@
+#currently-unavailable{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    font-size: var(--font-large);
+    font-weight: 600;
+    opacity: 0.2;
+    text-align: center;
+}
+
 #search-header{
     font-size: var(--font-large);
     margin-left: 1rem;

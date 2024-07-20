@@ -2,15 +2,20 @@ import React, { useEffect, useRef, useState } from 'react'
 import './Controls.css'
 import Lyrics from '../Lyrics/Lyrics';
 
+import playImg from '../../../assets/player/play.png'
+import pauseImg from '../../../assets/player/pause.png'
+import replayImg from '../../../assets/player/replay.png'
+import arrowHeadImg from '../../../assets/player/arrow-head.png'
+import lyricsImg from '../../../assets/player/lyrics.png'
+
 function Controls({autoPlay, index, list, onPrevious, onNext}) {
     const audioRef = useRef(null);
     const progressBar = useRef(null);
     const [key, setIndex] = useState(index);
-    const [playPause,setPlayPause]=useState("src/assets/player/play.png")
+    const [playPause,setPlayPause]=useState(playImg)
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);  
-    const [src, setSrc] = useState("src/assets/player/check.mp3")
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -29,10 +34,10 @@ function Controls({autoPlay, index, list, onPrevious, onNext}) {
     const togglePlayPause = () => {
         if (isPlaying) {
           audioRef.current.pause();
-          setPlayPause("src/assets/player/play.png")
+          setPlayPause(playImg)
         } else {
             audioRef.current.play();
-            setPlayPause("src/assets/player/pause.png")
+            setPlayPause(pauseImg)
         }
         setIsPlaying(!isPlaying);
       };  
@@ -77,6 +82,7 @@ function Controls({autoPlay, index, list, onPrevious, onNext}) {
       
   return (
     <>
+    <div id="controls-wrapper">
         <>
             <div id="song-details">
                 <p id="p-song-title">{list[index].songName}</p>
@@ -93,16 +99,17 @@ function Controls({autoPlay, index, list, onPrevious, onNext}) {
             </div>
         </>
         <div id="controls">
-            <img onClick={handleReplay} src="src/assets/player/replay.png" id="replay" className="icons" />
+            <img onClick={handleReplay} src={replayImg} id="replay" className="icons" />
             <audio ref={audioRef} src={list[index].audioURL} onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleLoadedMetadata} onEnded={onNext} ></audio>
             <div id="main-controls">
-                <img onClick={onPrevious} src="src/assets/player/arrow-head.png" className="icons rotate" />
+                <img onClick={onPrevious} src={arrowHeadImg} className="icons rotate" />
                 <img onClick={togglePlayPause} id="play-btn" className='icons' src={playPause}/>
-                <img onClick={onNext} src="src/assets/player/arrow-head.png" className="icons" />
+                <img onClick={onNext} src={arrowHeadImg} className="icons" />
             </div>
-            <img onClick={openModal} src="src/assets/player/lyrics.png" className="icons" />
+            <img onClick={openModal} src={lyricsImg} className="icons" />
             <Lyrics isOpen={isModalOpen} onClose={closeModal} details={list[index]}/>
 
+        </div>
         </div>
     </>
   )

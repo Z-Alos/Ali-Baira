@@ -11,18 +11,21 @@
     cursor:pointer;
 }
 
+/* Upload Files */
+
 #upload-files-grid{
     margin-top: 2rem;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
     gap: 1rem;
+    overflow: hidden;
 }
 
 .upload-area{
+    aspect-ratio: 1 / 1;
     position: relative;
     display: grid;
     place-content: center;
-    height: 20vh;
     background-color: var(--secondary-color);
     border-radius: 0.5rem;
     text-align: center;
@@ -57,10 +60,7 @@
 .upload-area-titles{
     font-size: var(--font-small);
     opacity: 0.7;
-    width: 90%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    width: 100%;
 }
 
 .upload-area-titles span{
