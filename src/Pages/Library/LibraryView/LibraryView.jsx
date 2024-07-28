@@ -162,7 +162,6 @@ function LibraryView({ isOpen, onClose }) {
               id="library-view-cover-img" 
               onError={handleBrokenImage} 
               onLoad={handleImageLoad} 
-              alt="library cover"
             />
           </div>
         </div>

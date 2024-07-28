@@ -1,8 +1,8 @@
-import React, { useState, lazy, Suspense, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Songs.css'
 import SongItems from './SongItems/SongItems'
-import { db, storage, auth } from '../../firebase'
-import { collection, getDoc, getDocs, doc } from 'firebase/firestore'
+import { db, auth } from '../../firebase'
+import { collection, getDocs } from 'firebase/firestore'
 
 function Songs() {
   const [songs, setSongs] = useState();

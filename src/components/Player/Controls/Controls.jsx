@@ -7,7 +7,6 @@ import pauseImg from '../../../assets/player/pause.png'
 import replayImg from '../../../assets/player/replay.png'
 import arrowHeadImg from '../../../assets/player/arrow-head.png'
 import lyricsImg from '../../../assets/player/lyrics.png'
-import { useNavigate } from 'react-router-dom';
 
 function Controls({autoPlay, index, list, onPrevious, onNext}) {
     const audioRef = useRef(null);

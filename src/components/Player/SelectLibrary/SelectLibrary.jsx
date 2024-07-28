@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './SelectLibrary.css'
 
-import { collection, addDoc, doc, getDocs } from "firebase/firestore";
-import { db, auth, storage } from '../../../firebase';
-import LibraryItems from '../../../Pages/Library/LibraryItems';
-import CoverImage from '../../CoverImage/CoverImage';
+import { collection, getDocs } from "firebase/firestore";
+import { db, auth } from '../../../firebase';
 
 
 function SelectLibrary({ isSelectionOpen, onSelectionClose }) {
@@ -31,17 +29,6 @@ function SelectLibrary({ isSelectionOpen, onSelectionClose }) {
   const handleImageLoad = () => {
       setIsLoaded(true)  
   }
-
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    console.log("close modal")
-    setIsModalOpen(false);
-  };
-
 
   async function listLibraries(){
     const colSnap = await getDocs(collection(db,'users',userRefID, 'userLibrary'));

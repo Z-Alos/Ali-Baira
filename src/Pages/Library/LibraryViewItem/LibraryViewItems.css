@@ -21,7 +21,7 @@
 }
 
 .lv-img{
-  height: inherit;
+  object-fit: cover;
 }
 
 .lv-details{

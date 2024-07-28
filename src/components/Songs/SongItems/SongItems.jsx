@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './SongItems.css';
 import Player from '../../Player/Player';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function SongItems({ list, index, details }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
 
   const openModal = () => {
-    // Add hash to URL
     window.history.pushState({}, '', '#player');
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    // Remove hash from URL
     window.history.pushState({}, '', '/home');
     setIsModalOpen(false);
   };
 
-  // Update hash when location changes
   useEffect(() => {
     const handlePopState = () => {
       if (isModalOpen) {
@@ -35,7 +31,6 @@ function SongItems({ list, index, details }) {
     };
   }, [isModalOpen]);
 
-  // Manage image load states
   const [isLoaded, setIsLoaded] = useState(true);
 
   let brokenImage = {

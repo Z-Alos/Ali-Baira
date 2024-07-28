@@ -48,6 +48,7 @@ function Library() {
       const col = doc(db,"users",userRefID);
       const collectionCol = collection(col,"userLibrary")
       const libRef = await addDoc(collectionCol, fields)
+      listLibraries()
     }catch(e){
       console.log("ERROR CREATING PLAYLIST!!!")
     }
@@ -96,7 +97,7 @@ function Library() {
         <div className="margintop">
           { !loading ?
             (library?.map((data, index) => (
-              <LibraryItems key={index} details={data} />
+              <LibraryItems key={index} details={data} onPlaylistDelete={listLibraries}/>
             ))) : null      
           }
         </div>

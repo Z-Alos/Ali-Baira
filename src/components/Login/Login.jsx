@@ -1,6 +1,6 @@
 import React from 'react'
 import './Login.css'
-import { signInWithGoogleRedirect, auth, createUserDocumentFromAuth } from '../../firebase'
+import { signInWithGoogleRedirect } from '../../firebase'
 
 import googleIMG from '../../assets/google.png'
 

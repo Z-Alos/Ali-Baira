@@ -5,7 +5,7 @@ import DeletePlaylist from './DeletePlaylist/DeletePlaylist';
 
 import dotsImg from '../../assets/player/dots.png'
 
-function LibraryItems({ details }) {
+function LibraryItems({ details, onPlaylistDelete }) {
   const navigate = useNavigate(); 
   const [isLoaded, setIsLoaded] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,7 +55,7 @@ function LibraryItems({ details }) {
           <img onClick={openModal} className='icons' src={dotsImg} alt=":" />
         </div>
       </div>
-      <DeletePlaylist isOpen={isModalOpen} onClose={closeModal} lvCover={details.lvCover} libraryID={details.libraryID} playlistName={details.playlistName} />
+      <DeletePlaylist isOpen={isModalOpen} onClose={closeModal} lvCover={details.lvCover} libraryID={details.libraryID} playlistName={details.playlistName} onDelete={onPlaylistDelete}/>
     </>
   );
 }

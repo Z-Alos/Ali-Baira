@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { doc, deleteDoc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 import { db, auth } from '../../../firebase'
 
 import downImg from '../../../assets/player/down.png'
@@ -9,21 +9,11 @@ import removeImg from '../../../assets/player/remove.png'
 function LibraryOptions({ isOpen, onClose, details, index, libraryID }) {
     if(!isOpen) return null;
     const [isLoaded, setIsLoaded] = useState(true)
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     let userRefID = "UserSampleData"
 
     if(auth.currentUser) (userRefID = auth.currentUser.uid)
 
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        console.log("close modal")
-        setIsModalOpen(false);
-    };
- 
     let brokenImage = {
         opacity: isLoaded ? 1 : 0
     }
@@ -37,38 +27,12 @@ function LibraryOptions({ isOpen, onClose, details, index, libraryID }) {
         setIsLoaded(true)  
     }
 
-    const openSelectLibrary = () => {
-        setIsModalOpen(true)
-    }
-
-    async function handleAddToPlaylist(libraryID){
-        setIsModalOpen(false);
-        const fields = {
-          playlistID:libraryID,
-          createdAt:serverTimestamp()
-        }
-    
-        try{
-            console.log(details[index].songID)
-            const songID = details[index].songID
-            const userLibraryRef = doc(db, "users", auth.currentUser.uid, "userLibrary", libraryID);
-            const newDocRef = doc(userLibraryRef, "songs", songID);
-            await setDoc(newDocRef, fields);
-
-            console.log("Added to Playlist")
-        }
-        catch(e){
-            console.log("ERROR Adding to PLAYLIST!!! ", e)
-        }
-      };
-
     async function removeSongFromPlaylist() {
     try {
         const songRef = doc(db, "users", userRefID, "userLibrary", libraryID, "songs", details.songID);
         await deleteDoc(songRef);
         console.log(`Deleted song with ID: ${details.songID}`);
-        onClose();
-        window.location.reload();
+        window.location.reload()
 
     } catch (e) {
         console.error("Error deleting song: ", e);

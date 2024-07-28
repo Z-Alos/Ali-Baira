@@ -20,6 +20,10 @@
     background-color: var(--light-grey-color);
 }
 
+.lib-item-cover img:not([src]){
+    display: none;
+}
+
 .lib-item-icon{
     fill: white;
     width: 70%;

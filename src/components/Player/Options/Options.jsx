@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import './Options.css'
 import SelectLibrary from '../SelectLibrary/SelectLibrary';
-import { useNavigate } from 'react-router-dom';
 
 import { doc, deleteDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db, auth, storage } from '../../../firebase';
-import { ref, deleteObject } from "firebase/storage";
+import { ref, deleteObject, getMetadata } from "firebase/storage";
 
 import downImg from '../../../assets/player/down.png'
 import addImg from '../../../assets/player/add.png'
@@ -18,8 +17,6 @@ function Options({ isOpen, onClose, details, index }) {
     if(!isOpen) return null;
     const [isLoaded, setIsLoaded] = useState(true)
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const navigate = useNavigate()
 
     let userRefID = "UserSampleData"
     if(auth.currentUser) {
@@ -35,15 +32,6 @@ function Options({ isOpen, onClose, details, index }) {
         })
     })
 
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        console.log("close modal")
-        setIsModalOpen(false);
-    };
- 
     let brokenImage = {
         opacity: isLoaded ? 1 : 0
     }
@@ -83,19 +71,31 @@ function Options({ isOpen, onClose, details, index }) {
         onClose();
       };
 
-    async function handleDeleteSong() {
+      async function handleDeleteSong() {
         try {
-            const songID = details[index].songID
+            const songID = details[index].songID;
             const coverRef = ref(storage, `users/${userRefID}/coverPhoto/${songID}`);
-            await deleteObject(coverRef);
-
             const audioRef = ref(storage, `users/${userRefID}/audioFile/${songID}`);
+    
+            try {
+                await getMetadata(coverRef);
+                await deleteObject(coverRef);
+                console.log("Cover Photo deleted...");
+            } catch (error) {
+                if (error.code === 'storage/object-not-found') {
+                    console.log("Cover Photo does not exist.");
+                } else {
+                    throw error;
+                }
+            }
+    
             await deleteObject(audioRef);
-
+            console.log("Audio File deleted...");
+    
             const songDocRef = doc(db, `users/${userRefID}/songCollection/${songID}`);
             await deleteDoc(songDocRef);
             console.log("Song::Deleted...", songID);
-
+    
             window.location.reload();
         } catch (error) {
             console.error("Error deleting song: ", error);

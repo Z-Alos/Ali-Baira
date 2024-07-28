@@ -7,23 +7,13 @@ import downIMG from '../../../assets/player/down.png'
 import deleteImg from '../../../assets/delete.png'
 
 
-function DeletePlaylist({ isOpen, onClose, libraryID, playlistName, lvCover }) {
+function DeletePlaylist({ isOpen, onClose, libraryID, playlistName, lvCover, onDelete }) {
     if(!isOpen) return null;
     const [isLoaded, setIsLoaded] = useState(true)
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     let userRefID = "UserSampleData"
     if(auth.currentUser) (userRefID = auth.currentUser.uid)
 
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        console.log("close modal")
-        setIsModalOpen(false);
-    };
- 
     let brokenImage = {
         opacity: isLoaded ? 1 : 0
     }
@@ -37,41 +27,17 @@ function DeletePlaylist({ isOpen, onClose, libraryID, playlistName, lvCover }) {
         setIsLoaded(true)  
     }
 
-    const openSelectLibrary = () => {
-        setIsModalOpen(true)
-    }
-
-    async function handleAddToPlaylist(libraryID){
-        setIsModalOpen(false);
-        const fields = {
-          playlistID:libraryID,
-          createdAt:serverTimestamp()
-        }
-    
-        try{
-            console.log(details[index].songID)
-            const songID = details[index].songID
-            const userLibraryRef = doc(db, "users", userRefID, "userLibrary", libraryID);
-            const newDocRef = doc(userLibraryRef, "songs", songID);
-            await setDoc(newDocRef, fields);
-
-            console.log("Added to Playlist")
-        }
-        catch(e){
-            console.log("ERROR Adding to PLAYLIST!!! ", e)
-        }
-      };
-
-      async function handleDeletePlaylist() {
+    async function handleDeletePlaylist() {
         try {
-          const libraryRef = doc(db, "users", userRefID, "userLibrary", libraryID);
-          await deleteDoc(libraryRef);
-          console.log(`Deleted library with ID: ${libraryID}`);
+            const libraryRef = doc(db, "users", userRefID, "userLibrary", libraryID);
+            await deleteDoc(libraryRef);
+            console.log(`Deleted library with ID: ${libraryID}`);
+            onDelete()
+            onClose()
         } catch (e) {
-          console.error("Error deleting library: ", e);
+            console.error("Error deleting library: ", e);
         }
-        window.location.reload();
-      }
+    }
 
   return (
     <>              
